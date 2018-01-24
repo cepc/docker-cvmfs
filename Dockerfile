@@ -8,9 +8,6 @@ USER root
 ENV USER root
 ENV HOME /root
 
-## make sure FUSE can be enabled
-RUN if [[ ! -e /dev/fuse ]]; then mknod -m 666 /dev/fuse c 10 229; fi; chmod a+rw /dev/fuse
-
 # install rpms
 RUN set -ex; \
     rpm --rebuilddb; \
@@ -18,7 +15,7 @@ RUN set -ex; \
     yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm; \
     yum update -y; \
     yum install -y \
-    cvmfs cvmfs-config-default \
+    cvmfs cvmfs-config-default fuse \
     openssh-server \
     man wget vim nano bash-completion \
     glibc-devel zlib-devel openssl-devel libxml2-devel fftw-devel python-devel \
@@ -37,7 +34,6 @@ COPY etc-cvmfs-default-local /etc/cvmfs/default.local
 
 RUN mkdir -p /cvmfs/cepc.ihep.ac.cn
 RUN echo "cepc.ihep.ac.cn /cvmfs/cepc.ihep.ac.cn cvmfs defaults 0 0" >> /etc/fstab
-RUN chmod a+rw /dev/fuse
 
 COPY dot-bash_profile $HOME/.bash_profile
 COPY dot-bashrc       $HOME/.bashrc
@@ -45,6 +41,9 @@ COPY dot-cepcenv-conf $HOME/.cepcenv.conf
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+
+## make sure FUSE can be enabled
+RUN if [[ ! -e /dev/fuse ]]; then mknod -m 666 /dev/fuse c 10 229; fi; chmod a+rw /dev/fuse
 
 WORKDIR /root
 
