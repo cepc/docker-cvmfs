@@ -1,16 +1,15 @@
 ##
-## cepc/cvmfs-cepc
+## cepc/cvmfs
 ## A container where CernVM-FS is up and running
 ##
 FROM hepsw/slc-base
-MAINTAINER Xianghu Zhao "zhaoxh@ihep.ac.cn"
 
 USER root
 ENV USER root
 ENV HOME /root
 
 ## make sure FUSE can be enabled
-RUN if [[ ! -e /dev/fuse ]]; then mknod -m 666 /dev/fuse c 10 229; fi
+RUN if [[ ! -e /dev/fuse ]]; then mknod -m 666 /dev/fuse c 10 229; fi; chmod a+rw /dev/fuse
 
 # install rpms
 RUN set -ex; \
@@ -37,6 +36,7 @@ COPY etc-cvmfs-keys-ihep     /etc/cvmfs/keys/ihep.ac.cn
 COPY etc-cvmfs-default-local /etc/cvmfs/default.local
 
 RUN mkdir -p /cvmfs/cepc.ihep.ac.cn
+RUN echo "cepc.ihep.ac.cn /cvmfs/cepc.ihep.ac.cn cvmfs defaults 0 0" >> /etc/fstab
 
 COPY dot-bash_profile $HOME/.bash_profile
 COPY dot-bashrc       $HOME/.bashrc
