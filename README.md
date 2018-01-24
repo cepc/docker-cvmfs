@@ -1,5 +1,5 @@
-cepc/cvmfs-cepc
-===============
+cepc/cvmfs
+==========
 
 A docker container with CVMFS installed and configured
 for CEPC software.
@@ -8,7 +8,7 @@ for CEPC software.
 
 Start the container:
 
-    docker run --privileged -i -t cepc/cvmfs-cepc
+    docker run --privileged -i -t cepc/cvmfs
 
 Select CEPC software version:
 
