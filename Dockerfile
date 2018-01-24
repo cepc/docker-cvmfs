@@ -37,6 +37,7 @@ COPY etc-cvmfs-default-local /etc/cvmfs/default.local
 
 RUN mkdir -p /cvmfs/cepc.ihep.ac.cn
 RUN echo "cepc.ihep.ac.cn /cvmfs/cepc.ihep.ac.cn cvmfs defaults 0 0" >> /etc/fstab
+RUN chmod a+rw /dev/fuse
 
 COPY dot-bash_profile $HOME/.bash_profile
 COPY dot-bashrc       $HOME/.bashrc
