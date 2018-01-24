@@ -21,11 +21,12 @@ RUN set -ex; \
     yum install -y \
     cvmfs cvmfs-config-default \
     openssh-server \
-    man vim nano bash-completion\
-    glibc-devel zlib-devel \
-    libX11 libXext libXmu libXpm libXft libXt xorg-x11-xauth \
-    mesa-libGL mesa-libGLU freeglut \
-    git java-1.8.0-openjdk mysql fftw \
+    man wget vim nano bash-completion \
+    glibc-devel zlib-devel openssl-devel libxml2-devel fftw-devel python-devel \
+    mysql-devel sqlite-devel \
+    libX11-devel libXpm-devel libXt-devel libXft-devel libXext-devel libXmu-devel xorg-x11-xauth \
+    mesa-libGL-devel mesa-libGLU-devel freeglut-devel \
+    git subversion java-1.8.0-openjdk-devel \
     ; \
     yum reinstall -y cracklib-dicts; \
     yum clean -y all; \
