@@ -2,7 +2,7 @@
 
 .PHONY: all build
 
-REPO := cepc/cvmfs-cepc
+REPO := cepc/cvmfs
 TAG ?= $(shell date +%Y%m%d)
 
 all: build
