@@ -1,0 +1,9 @@
+# vim: set syntax=yaml:
+
+#verbose: false
+
+#release_repo: https://github.com/cepc/cepc-release
+
+software_root: /cvmfs/cepc.ihep.ac.cn/software/cepcsoft
+
+#work_root: ~/mywork

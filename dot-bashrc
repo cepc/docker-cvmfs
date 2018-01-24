@@ -1,0 +1,7 @@
+## .bashrc
+
+if [ -f "/etc/bashrc" ] ; then
+  source /etc/bashrc
+fi
+
+. /cvmfs/cepc.ihep.ac.cn/software/cepcenv/setup.sh
