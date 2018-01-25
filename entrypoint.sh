@@ -1,11 +1,12 @@
 #!/bin/sh
 
-echo "::: Create /dev/fuse"
+echo "::: Config /dev/fuse"
 if [ ! -e /dev/fuse ]; then
   mknod -m 666 /dev/fuse c 10 229
 fi
+chmod a+rw /dev/fuse
 
-echo "::: Cleaning..."
+echo "::: Cleaning autofs..."
 rm -rf /var/run/autofs*
 
 echo "::: cvmfs-config..."
