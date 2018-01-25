@@ -42,6 +42,9 @@ COPY dot-cepcenv-conf $HOME/.cepcenv.conf
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
+RUN echo 'root:root' | chpasswd
+RUN service sshd start
+
 ## make sure FUSE can be enabled
 #RUN if [[ ! -e /dev/fuse ]]; then mknod -m 666 /dev/fuse c 10 229; fi; chmod a+rw /dev/fuse
 
