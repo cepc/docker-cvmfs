@@ -6,11 +6,11 @@ if [ ! -e /dev/fuse ]; then
 fi
 chmod a+rw /dev/fuse
 
-echo "::: Cleaning autofs..."
-rm -rf /var/run/autofs*
+#echo "::: Cleaning autofs..."
+#rm -rf /var/run/autofs*
 
-echo "::: cvmfs-config..."
-cvmfs_config setup || exit 1
+#echo "::: cvmfs-config..."
+#cvmfs_config setup || exit 1
 
 echo "::: Mounting FUSE..."
 mount -a
